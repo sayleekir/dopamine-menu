@@ -7,15 +7,19 @@
 
 .div-mobile-bg {
   width: 100%;
-  height: 68.0625rem;
+  height: 100vh;
   flex-shrink: 0;
   position: fixed;
-  object-fit: cover;
+  top: 0;
+  left: 0;
   z-index: -1;
+  background-image:
+    repeating-linear-gradient(to right, rgba(0,0,0,0.25) 0, rgba(0,0,0,0.25) 1px, transparent 1px, transparent 34.447px),
+    repeating-linear-gradient(to bottom, rgba(0,0,0,0.25) 0, rgba(0,0,0,0.25) 1px, transparent 1px, transparent 38.893px);
 }
 
 .div-mobile-bg svg {
-  width: 100%;
+  display: none;
 }
 
 .div-hero {
@@ -64,6 +68,81 @@
   border: 1px solid #000;
   background: #fcfcfc;
   width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+
+.appetiser-artwork,
+.side-dish-artwork,
+.main-dish-artwork,
+.specials-artwork,
+.dessert-artwork {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.appetiser-artwork img {
+  height: 10rem;
+  width: auto;
+  display: block;
+  padding: 0;
+}
+
+.side-dish-artwork img,
+.main-dish-artwork img,
+.specials-artwork img,
+.dessert-artwork img {
+  height: 10rem;
+  width: auto;
+  display: block;
+  padding: 0;
+}
+
+.side-dish-artwork img {
+  height: 7em;
+}
+
+.main-dish-artwork img,
+.dessert-artwork img {
+  height: 7rem;
+}
+
+.artwork-default {
+  display: block;
+}
+
+.artwork-hover {
+  display: none;
+}
+
+.appetiser:hover .artwork-default,
+.side-dish:hover .artwork-default,
+.main-dish:hover .artwork-default,
+.specials:hover .artwork-default,
+.dessert:hover .artwork-default {
+  display: none;
+}
+
+.appetiser:hover .artwork-hover,
+.side-dish:hover .artwork-hover,
+.main-dish:hover .artwork-hover,
+.specials:hover .artwork-hover,
+.dessert:hover .artwork-hover {
+  display: block;
+}
+
+.specials-artwork {
+  top: -2rem;
+}
+
+.specials:hover .artwork-hover {
+  transform: rotate(-15deg);
+}
+
+.div-menu-item:hover {
+  box-shadow: 0.25em 0.25em 0 0 #000;
 }
 
 .div-hero-wrapper {
@@ -73,14 +152,21 @@
 
 .div-hero-bg-shape {
   padding-top: 14em;
+  padding-bottom: 0.5rem;
   position: absolute;
-  top: 0;
+  top: 8em;
   width: 100%;
   height: 88%;
   z-index: -1;
   background: #fae089;
-  border-radius: 15em 15em 0 0;
-  top: 8em;
+  border-radius: 50% 50% 0 0 / 8em 8em 0 0;
+}
+
+@media (min-width: 768px) {
+  .div-hero-bg-shape {
+    border-radius: 15em 15em 0 0;
+    padding-bottom: 0;
+  }
 }
 
 .div-about {
