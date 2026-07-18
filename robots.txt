@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sayleekir.github.io/dopamine-menu/sitemap.xml
