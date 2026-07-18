@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# Keeps timer.js content-hashed for cache-busting.
+# Edit timer.js directly; this regenerates timer.<hash>.js and repoints
+# every *.html <script> tag at it whenever timer.js is part of the commit.
+set -euo pipefail
+shopt -s nullglob
+
+cd "$(git rev-parse --show-toplevel)"
+
+SRC="timer.js"
+[ -f "$SRC" ] || exit 0
+git diff --cached --name-only | grep -qx "$SRC" || exit 0
+
+HASH=$(shasum -a 256 "$SRC" | cut -c1-10)
+NEW_FILE="timer.${HASH}.js"
+
+[ -f "$NEW_FILE" ] || cp "$SRC" "$NEW_FILE"
+
+for f in timer.*.js; do
+  if [ "$f" != "$SRC" ] && [ "$f" != "$NEW_FILE" ]; then
+    git rm -f --ignore-unmatch "$f" >/dev/null
+    rm -f "$f"
+  fi
+done
+
+python3 - "$NEW_FILE" <<'PYEOF'
+import glob
+import re
+import sys
+
+new_file = sys.argv[1]
+for path in glob.glob("*.html"):
+    with open(path) as fh:
+        content = fh.read()
+    updated = re.sub(r'src="timer\.[^"]*\.js"', f'src="{new_file}"', content)
+    if updated != content:
+        with open(path, "w") as fh:
+            fh.write(updated)
+PYEOF
+
+git add "$NEW_FILE" *.html
+
+echo "pre-commit: timer.js -> $NEW_FILE"
