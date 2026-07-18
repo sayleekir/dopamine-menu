@@ -14,8 +14,20 @@
   left: 0;
   z-index: -1;
   background-image:
-    repeating-linear-gradient(to right, rgba(0,0,0,0.25) 0, rgba(0,0,0,0.25) 1px, transparent 1px, transparent 34.447px),
-    repeating-linear-gradient(to bottom, rgba(0,0,0,0.25) 0, rgba(0,0,0,0.25) 1px, transparent 1px, transparent 38.893px);
+    repeating-linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.25) 0,
+      rgba(0, 0, 0, 0.25) 1px,
+      transparent 1px,
+      transparent 34.447px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.25) 0,
+      rgba(0, 0, 0, 0.25) 1px,
+      transparent 1px,
+      transparent 38.893px
+    );
 }
 
 .div-mobile-bg svg {
@@ -70,8 +82,9 @@
   width: 100%;
   position: relative;
   overflow: hidden;
+  text-decoration: none;
+  color: inherit;
 }
-
 
 .appetiser-artwork,
 .side-dish-artwork,
@@ -150,6 +163,33 @@
   height: 100%;
 }
 
+.div-menu-sparkle {
+  position: absolute;
+  left: -0.5rem;
+  bottom: 7rem;
+  width: 6rem;
+  height: 5rem;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.div-menu-sparkle .sparkle-large {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 4rem;
+  height: 4rem;
+}
+
+.div-menu-sparkle .sparkle-small {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  transform: rotate(20deg);
+}
+
 .div-hero-bg-shape {
   padding-top: 14em;
   padding-bottom: 0.5rem;
@@ -164,8 +204,211 @@
 
 @media (min-width: 768px) {
   .div-hero-bg-shape {
-    border-radius: 15em 15em 0 0;
+    width: 90%;
+    height: 92%;
+    top: 4em;
+    right: 0;
+    left: auto;
+    border-radius: 999px 0 0 999px;
+    padding-top: 0;
     padding-bottom: 0;
+  }
+
+  .div-hero-wrapper {
+    margin-top: 10em;
+  }
+
+  .div-hero {
+    display: grid;
+    grid-template-columns: 20em 1fr;
+    grid-template-rows: auto auto auto;
+    column-gap: 3rem;
+    row-gap: 1.5rem;
+    max-width: 56rem;
+    margin: 0 auto;
+    transform: translateY(-130px);
+  }
+
+  .div-hero img {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    width: 100%;
+    align-self: start;
+  }
+
+  .div-hero-text {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: left;
+    align-self: end;
+  }
+
+  .div-hero-text h1 {
+    font-size: 5.5rem;
+    line-height: 4.875rem;
+  }
+
+  .div-hero-text .h1-italics {
+    font-size: 5.5rem;
+    line-height: 4.875rem;
+  }
+
+  .div-hero > .body-copy-one {
+    grid-column: 2;
+    grid-row: 2;
+    text-align: left;
+    margin: 0;
+  }
+
+  .div-menu {
+    grid-column: 1 / 3;
+    grid-row: 3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .div-hero > .body-copy-two {
+    grid-column: 1 / 3;
+    text-align: center;
+  }
+}
+
+.div-detail-header {
+  background: #fae089;
+  padding: 2.5em 1.5rem 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: #c15555;
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+}
+
+.back-button svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.div-timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid #000;
+  background: #fcfcfc;
+}
+
+.timer-display {
+  font-family: "Nunito Sans";
+  font-size: 3rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.timer-controls {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.timer-btn {
+  font-family: "Nunito Sans";
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.6em 1.25em;
+  border-radius: 999px;
+  border: 1px solid #000;
+  background: #fff;
+  cursor: pointer;
+}
+
+.timer-btn:hover {
+  box-shadow: 0.2em 0.2em 0 0 #000;
+}
+
+.timer-minutes-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.timer-minutes-input {
+  width: 4rem;
+  padding: 0.4em 0.5em;
+  border-radius: 0.5rem;
+  border: 1px solid #000;
+  font-family: "Nunito Sans";
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.div-detail-content {
+  padding: 1.5rem 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+.div-detail-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid #000;
+  background: #fcfcfc;
+}
+
+.div-detail-card:hover {
+  box-shadow: 0.25em 0.25em 0 0 #000;
+}
+
+.div-detail-card-label {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.div-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.div-detail-grid .div-detail-card {
+  aspect-ratio: 1 / 1;
+}
+
+@media (min-width: 768px) {
+  .div-detail-grid {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -193,53 +436,61 @@
   padding: 1em 0em 0em 8em;
 }
 
+.div-about-inside .body-copy-two {
+  text-align: left;
+  width: 60%;
+}
+
+.div-about-inside .body-copy-two a {
+  color: inherit;
+}
+
 .div-about-text {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
 }
 
-.div-about-float{
-position: absolute;
-left: -1.75rem;
-bottom: 2em;
+.div-about-float {
+  position: absolute;
+  left: -1.75rem;
+  bottom: 2em;
 }
 
-footer{
-    background-color: white;
-    padding: 2em 0em;
+footer {
+  background-color: white;
+  padding: 2em 0em;
 }
 
-.marquee{
-white-space: nowrap;
-border-top: solid #000 1px;
-border-bottom: solid #000 1px;
-padding-top: 0.25em;
-padding-bottom: 0.25em;
-overflow: hidden;
+.marquee {
+  white-space: nowrap;
+  border-top: solid #000 1px;
+  border-bottom: solid #000 1px;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+  overflow: hidden;
 }
 
-.div-marquee-track{
-    width: max-content;
-    display: flex;
-    white-space: nowrap;
-    animation: animate 25s linear infinite;
+.div-marquee-track {
+  width: max-content;
+  display: flex;
+  white-space: nowrap;
+  animation: animate 25s linear infinite;
 }
 
-.div-marquee-frame{
-    flex-shrink: 0;
-white-space: nowrap;
+.div-marquee-frame {
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
-@keyframes animate{
-    0%{
-        transform: translateX(0%);
-    }
-    100%{
-        transform: translateX(-50%);
-    }
+@keyframes animate {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
-
 
 /* fonts */
 
@@ -279,7 +530,7 @@ h2 {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin: 1em 3em;
-text-align: center;
+  text-align: center;
 }
 
 .body-copy-two {
