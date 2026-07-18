@@ -500,7 +500,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function postViewer() {
     if (baseCategory === undefined) return;
-    fetch(VIEWERS_API, {
+    fetch(`${VIEWERS_API}/join`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ categoryList: [baseCategory, subCategory] }),
